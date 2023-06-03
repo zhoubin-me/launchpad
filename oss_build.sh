@@ -21,7 +21,7 @@ set -o pipefail
 cd "$(dirname "$0")"
 
 # Flags
-PYTHON_VERSIONS=3.8 # Options 3.7, 3.8, 3.9, 3.10
+PYTHON_VERSIONS=3.9 # Options 3.7, 3.8, 3.9, 3.10
 CLEAN=false # Set to true to run bazel clean.
 OUTPUT_DIR=/tmp/launchpad/dist/
 INSTALL=true # Should the built package be installed.
@@ -54,7 +54,7 @@ while [[ $# -gt -0 ]]; do
       echo "Unknown flag: $key"
       echo "Usage:"
       echo "--release [Indicates this is a release build. Otherwise nightly.]"
-      echo "--python  [3.7|3.8(default)|3.9]"
+      echo "--python  [3.7|3.8|3.9(default)]"
       echo "--clean   [true to run bazel clean]"
       echo "--install [true to install built package]"
       echo "--output_dir  [location to copy .whl file.]"
