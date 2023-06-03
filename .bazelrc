@@ -15,10 +15,11 @@ build -c opt
 build --cxxopt="-std=c++17"
 build --host_cxxopt="-std=c++17"
 # We can remove this flag (we keep it explicit for now)
+build --cxxopt=-DNPY_NO_DEPRECATED_API
 build --cxxopt="-D_GLIBCXX_USE_CXX11_ABI=1"
 build --host_cxxopt="-D_GLIBCXX_USE_CXX11_ABI=1"
-build --auto_output_filter=subpackages
 build --copt="-Wall" --copt="-Wno-sign-compare"
+build --auto_output_filter=subpackages
 build --linkopt="-lrt -lm"
 # We build with AVX and eigen byte alignment to match tensorflow's (and Eigen)
 # pip package byte alignment.  See b/186669968 for more details.
