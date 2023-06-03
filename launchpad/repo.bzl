@@ -332,16 +332,10 @@ def github_apple_deps():
 def github_grpc_deps():
     http_archive(
         name = "com_github_grpc_grpc",
-        patch_cmds = [
-            """sed -i.bak 's/"python",/"python3",/g' third_party/py/python_configure.bzl""",
-            """sed -i.bak 's/PYTHONHASHSEED=0/PYTHONHASHSEED=0 python3/g' bazel/cython_library.bzl""",
-        ],
-        sha256 = "39bad059a712c6415b168cb3d922cb0e8c16701b475f047426c81b46577d844b",
-        strip_prefix = "grpc-reverb_fix",
+        strip_prefix = "grpc-1.54.2",
+        sha256 = "3c305f0ca5f98919bc104448f59177e7b936acd5c69c144bf4a548cad723e1e4",
         urls = [
-            # Patched version of GRPC / boringSSL to make it compile with old TF GCC compiler
-            # (see b/244280763 for details).
-            "https://github.com/qstanczyk/grpc/archive/reverb_fix.tar.gz",
+            "https://github.com/grpc/grpc/archive/refs/tags/v1.54.2.tar.gz",
         ],
     )
 
@@ -359,11 +353,10 @@ def googletest_deps():
 def absl_deps():
     http_archive(
         name = "com_google_absl",
-        sha256 = "8eeec9382fc0338ef5c60053f3a4b0e0708361375fe51c9e65d0ce46ccfe55a7",  # SHARED_ABSL_SHA
-        strip_prefix = "abseil-cpp-b971ac5250ea8de900eae9f95e06548d14cd95fe",
+        strip_prefix = "abseil-cpp-20220623.1",
+        sha256 = "91ac87d30cc6d79f9ab974c51874a704de9c2647c40f6932597329a282217ba8",
         urls = [
-            "https://storage.googleapis.com/mirror.tensorflow.org/github.com/abseil/abseil-cpp/archive/b971ac5250ea8de900eae9f95e06548d14cd95fe.tar.gz",
-            "https://github.com/abseil/abseil-cpp/archive/b971ac5250ea8de900eae9f95e06548d14cd95fe.tar.gz",
+            "https://github.com/abseil/abseil-cpp/archive/refs/tags/20220623.1.tar.gz",
         ],
     )
 
