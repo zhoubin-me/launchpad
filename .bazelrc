@@ -18,7 +18,8 @@ build --host_cxxopt="-std=c++17"
 build --cxxopt="-D_GLIBCXX_USE_CXX11_ABI=1"
 build --host_cxxopt="-D_GLIBCXX_USE_CXX11_ABI=1"
 build --auto_output_filter=subpackages
-build --copt="-Wall" --copt="-Wno-sign-compare"
+# build --copt="-Wno-sign-compare" --cxxopt="-Wno-gnu-offsetof-extensions" --cxxopt="-Wno-c++11-narrowing" --copt="-Wno-unused-but-set-variable"
+build --copt="-w" --copt="-Wno-c++11-narrowing"
 build --linkopt="-lrt -lm"
 # We build with AVX and eigen byte alignment to match tensorflow's (and Eigen)
 # pip package byte alignment.  See b/186669968 for more details.

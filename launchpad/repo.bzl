@@ -300,11 +300,11 @@ def python_deps():
     http_archive(
         name = "pybind11",
         urls = [
-            "https://storage.googleapis.com/mirror.tensorflow.org/github.com/pybind/pybind11/archive/v2.10.0.tar.gz",
-            "https://github.com/pybind/pybind11/archive/v2.10.0.tar.gz",
+            "https://storage.googleapis.com/mirror.tensorflow.org/github.com/pybind/pybind11/archive/v2.10.4.tar.gz",
+            "https://github.com/pybind/pybind11/archive/v2.10.4.tar.gz",
         ],
-        sha256 = "eacf582fa8f696227988d08cfc46121770823839fe9e301a20fbce67e7cd70ec",
-        strip_prefix = "pybind11-2.10.0",
+        # sha256 = "eacf582fa8f696227988d08cfc46121770823839fe9e301a20fbce67e7cd70ec",
+        strip_prefix = "pybind11-2.10.4",
         build_file = clean_dep("//third_party:pybind11.BUILD"),
     )
 
@@ -332,11 +332,30 @@ def github_apple_deps():
 
 def github_grpc_deps():
     http_archive(
+        name = "io_bazel_rules_go",
+        sha256 = "16e9fca53ed6bd4ff4ad76facc9b7b651a89db1689a2877d6fd7b82aa824e366",
+        urls = ["https://github.com/bazelbuild/rules_go/releases/download/v0.34.0/rules_go-v0.34.0.zip"],
+    )
+    http_archive(
+        name = "upb",
+        # sha256 = "61d0417abd60e65ed589c9deee7c124fe76a4106831f6ad39464e1525cef1454",
+        strip_prefix = "upb-9effcbcb27f0a665f9f345030188c0b291e32482",
+        patches = ["//third_party:upb_platform_fix.patch"],
+        patch_args = ["-p1"],
+        urls = ["https://github.com/protocolbuffers/upb/archive/9effcbcb27f0a665f9f345030188c0b291e32482.tar.gz"],
+    )
+
+    http_archive(
         name = "com_github_grpc_grpc",
-        strip_prefix = "grpc-1.54.2",
-        sha256 = "3c305f0ca5f98919bc104448f59177e7b936acd5c69c144bf4a548cad723e1e4",
+        strip_prefix = "grpc-b54a5b338637f92bfcf4b0bc05e0f57a5fd8fadd",
+        # sha256 = "3c305f0ca5f98919bc104448f59177e7b936acd5c69c144bf4a548cad723e1e4",
+        patches = [
+            "//third_party:generate_cc_env_fix.patch",
+            "//third_party:register_go_toolchain.patch",
+        ],
+        patch_args = ["-p1"],
         urls = [
-            "https://github.com/grpc/grpc/archive/refs/tags/v1.54.2.tar.gz",
+            "https://github.com/grpc/grpc/archive/b54a5b338637f92bfcf4b0bc05e0f57a5fd8fadd.tar.gz"
         ],
     )
 
@@ -357,7 +376,7 @@ def absl_deps():
         sha256 = "8eeec9382fc0338ef5c60053f3a4b0e0708361375fe51c9e65d0ce46ccfe55a7",  # SHARED_ABSL_SHA
         strip_prefix = "abseil-cpp-b971ac5250ea8de900eae9f95e06548d14cd95fe",
         urls = [
-            "https://storage.googleapis.com/mirror.tensorflow.org/github.com/abseil/abseil-cpp/archive/b971ac5250ea8de900eae9f95e06548d14cd95fe.tar.gz",
+            # "https://storage.googleapis.com/mirror.tensorflow.org/github.com/abseil/abseil-cpp/archive/b971ac5250ea8de900eae9f95e06548d14cd95fe.tar.gz",
             "https://github.com/abseil/abseil-cpp/archive/b971ac5250ea8de900eae9f95e06548d14cd95fe.tar.gz",
         ],
     )
