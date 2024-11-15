@@ -39,8 +39,8 @@ from pybind11_abseil.status import StatusNotOk  # pytype: disable=import-error
 
 def translate_status(s):
   """Translate Pybind11 status to Exception."""
-  exc = StatusNotOk(s.message())
-  exc.code = s.code()
+  exc = StatusNotOk(s)
+  # exc.code = s.code()
   return exc
 
 

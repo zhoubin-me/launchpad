@@ -26,7 +26,7 @@ _PATCH_VERSION = '0'
 # release branch, the current version is by default assumed to be a
 # 'development' version, labeled 'dev'.
 _DEV_SUFFIX = 'dev'
-_REL_SUFFIX = 'rc0'
+_REL_SUFFIX = '+tf2.14.0'
 
 # Example, '0.4.0rc0'
 __version__ = '.'.join([
@@ -37,8 +37,8 @@ __version__ = '.'.join([
 __dev_version__ = '{}.{}'.format(__version__, _DEV_SUFFIX)
 __rel_version__ = '{}{}'.format(__version__, _REL_SUFFIX)
 
-__tensorflow_version__ = 'tensorflow~=2.12.0'
-__reverb_version__ = 'dm-reverb==0.12.0'
+__tensorflow_version__ = 'tensorflow~=2.14.0'
+__reverb_version__ = 'dm-reverb==0.13.0'
 
 __nightly_tensorflow_version__ = 'tf-nightly'
 __nightly_reverb_version__ = 'dm-reverb-nightly'

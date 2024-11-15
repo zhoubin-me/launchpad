@@ -1,4 +1,4 @@
-load("//launchpad:build_defs.bzl", "lp_library", "lp_pybind_extension", "lp_test")
+load("//launchpad:build_defs.bzl", "lp_library", "lp_py_test", "lp_pybind_extension", "lp_test")
 
 licenses(["notice"])
 
@@ -57,6 +57,17 @@ lp_library(
     srcs = ["client.py"],
     srcs_version = "PY3",
     deps = [":py_client"],
+)
+
+lp_py_test(
+    name = "client_test",
+    srcs = ["client_test.py"],
+    srcs_version = "PY3",
+    deps = [
+        ":server",
+        ":py_server_no_tf",
+        ":client",
+    ],
 )
 
 lp_library(
