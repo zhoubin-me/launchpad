@@ -92,7 +92,7 @@ Build the Docker container to be used for compiling and testing Launchpad.
 You can specify `tensorflow_pip` parameter to set the version
 of Tensorflow to build against. You can also specify which version(s) of Python
 container should support. The command below enables support for Python
-3.7, 3.8, 3.9 and 3.10.
+3.7, 3.8, 3.9 and 3.12.
 ```
 $ docker build --tag launchpad:devel - < docker/build.dockerfile
 ```
