@@ -59,9 +59,9 @@ cc_toolchain(
 cc_toolchain_config(
     name = "cc-compiler-local-config",
     cpu = "local",
-    builtin_include_directories = ["/dt9/usr/include/c++/9", "/dt9/usr/include/c++/9/x86_64-pc-linux-gnu", "/dt9/usr/include/c++/9/backward", "/usr/lib/llvm-17/lib/clang/17/include", "/dt9/usr/include/x86_64-linux-gnu", "/dt9/usr/include", "/usr/lib/llvm-17/lib/clang/17/share"],
+    builtin_include_directories = ["/dt9/usr/include/c++/9", "/dt9/usr/include/c++/9/x86_64-pc-linux-gnu", "/dt9/usr/include/c++/9/backward", "/usr/lib/llvm-18/lib/clang/18/include", "/dt9/usr/include/x86_64-linux-gnu", "/dt9/usr/include", "/usr/lib/llvm-18/lib/clang/18/share"],
     extra_no_canonical_prefixes_flags = [],
-    host_compiler_path = "/usr/lib/llvm-17/bin/clang",
+    host_compiler_path = "/usr/lib/llvm-18/bin/clang",
     host_compiler_prefix = "/usr/bin",
     host_compiler_warnings = [
         # Some parts of the codebase set -Werror and hit this warning, so
@@ -93,9 +93,9 @@ cc_toolchain(
 cc_toolchain_config(
     name = "cc-compiler-local-darwin",
     cpu = "darwin",
-    builtin_include_directories = ["/dt9/usr/include/c++/9", "/dt9/usr/include/c++/9/x86_64-pc-linux-gnu", "/dt9/usr/include/c++/9/backward", "/usr/lib/llvm-17/lib/clang/17/include", "/dt9/usr/include/x86_64-linux-gnu", "/dt9/usr/include", "/usr/lib/llvm-17/lib/clang/17/share"],
+    builtin_include_directories = ["/dt9/usr/include/c++/9", "/dt9/usr/include/c++/9/x86_64-pc-linux-gnu", "/dt9/usr/include/c++/9/backward", "/usr/lib/llvm-18/lib/clang/18/include", "/dt9/usr/include/x86_64-linux-gnu", "/dt9/usr/include", "/usr/lib/llvm-18/lib/clang/18/share"],
     extra_no_canonical_prefixes_flags = [],
-    host_compiler_path = "/usr/lib/llvm-17/bin/clang",
+    host_compiler_path = "/usr/lib/llvm-18/bin/clang",
     host_compiler_prefix = "/usr/bin",
     host_compiler_warnings = [
         # Some parts of the codebase set -Werror and hit this warning, so
@@ -124,7 +124,7 @@ cc_toolchain(
 cc_toolchain_config(
     name = "cc-compiler-windows-config",
     cpu = "x64_windows",
-    builtin_include_directories = ["/dt9/usr/include/c++/9", "/dt9/usr/include/c++/9/x86_64-pc-linux-gnu", "/dt9/usr/include/c++/9/backward", "/usr/lib/llvm-17/lib/clang/17/include", "/dt9/usr/include/x86_64-linux-gnu", "/dt9/usr/include", "/usr/lib/llvm-17/lib/clang/17/share"],
+    builtin_include_directories = ["/dt9/usr/include/c++/9", "/dt9/usr/include/c++/9/x86_64-pc-linux-gnu", "/dt9/usr/include/c++/9/backward", "/usr/lib/llvm-18/lib/clang/18/include", "/dt9/usr/include/x86_64-linux-gnu", "/dt9/usr/include", "/usr/lib/llvm-18/lib/clang/18/share"],
     msvc_cl_path = "%{msvc_cl_path}",
     msvc_env_include = "%{msvc_env_include}",
     msvc_env_lib = "%{msvc_env_lib}",

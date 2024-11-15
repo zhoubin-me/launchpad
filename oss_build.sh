@@ -21,7 +21,7 @@ set -o pipefail
 cd "$(dirname "$0")"
 
 # Flags
-PYTHON_VERSIONS=3.8 # Options 3.7, 3.8, 3.9, 3.10
+PYTHON_VERSIONS=3.11 # Options 3.7, 3.8, 3.9, 3.10
 CLEAN=false # Set to true to run bazel clean.
 # Also see https://github.com/deepmind/reverb/commit/4da8a918794b65aff4afd539e89e0ef6c35c3f35
 CLEAR_CACHE=false # Set to true to delete Bazel cache folder. b/279235134
@@ -80,23 +80,8 @@ for python_version in $PYTHON_VERSIONS; do
     fi
     bazel clean
   fi
-
-  if [ "$python_version" = "3.7" ]; then
-    export PYTHON_BIN_PATH=/usr/bin/python3.7 && export PYTHON_LIB_PATH=/usr/local/lib/python3.7/dist-packages
-    ABI=cp37
-  elif [ "$python_version" = "3.8" ]; then
-    export PYTHON_BIN_PATH=/usr/bin/python3.8 && export PYTHON_LIB_PATH=/usr/local/lib/python3.8/dist-packages
-    ABI=cp38
-  elif [ "$python_version" = "3.9" ]; then
-    export PYTHON_BIN_PATH=/usr/bin/python3.9 && export PYTHON_LIB_PATH=/usr/local/lib/python3.9/dist-packages
-    ABI=cp39
-  elif [ "$python_version" = "3.10" ]; then
-    export PYTHON_BIN_PATH=/usr/bin/python3.10 && export PYTHON_LIB_PATH=/usr/local/lib/python3.10/dist-packages
-    ABI=cp310
-  else
-    echo "Error unknown --python. Only [3.7|3.8|3.9|3.10]"
-    exit 1
-  fi
+  export PYTHON_BIN_PATH=/usr/bin/python3.11 && export PYTHON_LIB_PATH=/usr/local/lib/python3.11/dist-packages
+  ABI=cp311
 
   # Configures Bazel environment for selected Python version.
   $PYTHON_BIN_PATH configure.py
