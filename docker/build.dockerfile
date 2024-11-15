@@ -21,7 +21,9 @@ RUN ${APT_COMMAND} update && ${APT_COMMAND} install -y --no-install-recommends \
         git \
         less \
         libfreetype6-dev \
-        libhdf5-serial-dev \
+        libhdf5-serial-dev \docker build --tag launchpad:devel - < docker/build.dockerfile
+        docker run --rm --mount "type=bind,src=$PWD,dst=/tmp/launchpad" \
+          -it launchpad:devel /tmp/launchpad/oss_build.sh
         libpng-dev \
         libzmq3-dev \
         lsof \
@@ -49,25 +51,19 @@ RUN curl -O https://bootstrap.pypa.io/get-pip.py
 #     cd / && \
 #     rm -f /bazel/bazel-$BAZEL_VERSION-installer-linux-x86_64.sh
 
-ARG pip_dependencies=' \
+RUN pip install \
       absl-py \
       contextlib2 \
       dataclasses \
       dm-tree>=0.1.5 \
       h5py \
       mock \
-      numpy \
       oauth2client \
       pandas \
-      portpicker'
+      portpicker
 
-RUN for python in ${python_version}; do \
-    $python get-pip.py && \
-    $python -mpip uninstall -y tensorflow tensorflow-gpu tf-nightly tf-nightly-gpu && \
-    $python -mpip --no-cache-dir install tensorflow==2.18.0 --upgrade && \
-    $python -mpip --no-cache-dir install $pip_dependencies; \
-  done
-RUN rm get-pip.py
+RUN pip install tensorflow==2.18.0 --upgrade
+RUN pip install numpy==2.1.3
 
 # Removes existing links so they can be created to point where we expect.
 RUN rm /dt9/usr/include/x86_64-linux-gnu/python3.12
