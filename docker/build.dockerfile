@@ -1,11 +1,11 @@
-ARG cpu_base_image="tensorflow/build:latest-python3.11"
+ARG cpu_base_image="tensorflow/build:latest-python3.12"
 ARG base_image=$cpu_base_image
 FROM $base_image
 LABEL maintainer="no-reply@google.com"
 
 # Re-declare args because the args declared before FROM can't be used in any
 # instruction after a FROM.
-ARG python_version="python3.11"
+ARG python_version="python3.12"
 ARG APT_COMMAND="apt-get -o Acquire::Retries=3 -y"
 
 # Stops tzdata from asking about timezones and blocking install on user input.
@@ -26,7 +26,7 @@ RUN ${APT_COMMAND} update && ${APT_COMMAND} install -y --no-install-recommends \
         libzmq3-dev \
         lsof \
         pkg-config \
-        python3.11-dev \
+        python3.12-dev \
         rename \
         rsync \
         sox \
@@ -64,16 +64,16 @@ ARG pip_dependencies=' \
 RUN for python in ${python_version}; do \
     $python get-pip.py && \
     $python -mpip uninstall -y tensorflow tensorflow-gpu tf-nightly tf-nightly-gpu && \
-    $python -mpip --no-cache-dir install tensorflow==2.15.1 --upgrade && \
+    $python -mpip --no-cache-dir install tensorflow==2.18.0 --upgrade && \
     $python -mpip --no-cache-dir install $pip_dependencies; \
   done
 RUN rm get-pip.py
 
 # Removes existing links so they can be created to point where we expect.
-RUN rm /dt9/usr/include/x86_64-linux-gnu/python3.11
+RUN rm /dt9/usr/include/x86_64-linux-gnu/python3.12
 
 # Needed until this is included in the base TF image.
-RUN ln -s "/usr/include/x86_64-linux-gnu/python3.11" "/dt9/usr/include/x86_64-linux-gnu/python3.11"
+RUN ln -s "/usr/include/x86_64-linux-gnu/python3.12" "/dt9/usr/include/x86_64-linux-gnu/python3.12"
 
 # bazel build -c opt --copt=-mavx --config=manylinux2014 --test_output=errors //...
 

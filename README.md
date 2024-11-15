@@ -113,8 +113,8 @@ $ /tmp/launchpad/oss_build.sh
 To make sure installation was successful and Launchpad works as expected, you
 can run some examples provided:
 ```
-$ python3.11 -m launchpad.examples.hello_world.launch
-$ python3.11 -m launchpad.examples.consumer_producers.launch --lp_launch_type=local_mp
+$ python -m launchpad.examples.hello_world.launch
+$ python -m launchpad.examples.consumer_producers.launch --lp_launch_type=local_mp
 ```
 
 To make changes to Launchpad codebase, edit sources checked out from GitHub

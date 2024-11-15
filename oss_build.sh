@@ -21,7 +21,7 @@ set -o pipefail
 cd "$(dirname "$0")"
 
 # Flags
-PYTHON_VERSIONS=3.11 # Options 3.7, 3.8, 3.9, 3.10
+PYTHON_VERSIONS=3.12 # Options 3.7, 3.8, 3.9, 3.10
 CLEAN=false # Set to true to run bazel clean.
 # Also see https://github.com/deepmind/reverb/commit/4da8a918794b65aff4afd539e89e0ef6c35c3f35
 CLEAR_CACHE=false # Set to true to delete Bazel cache folder. b/279235134
@@ -80,7 +80,7 @@ for python_version in $PYTHON_VERSIONS; do
     fi
     bazel clean
   fi
-  export PYTHON_BIN_PATH=/usr/bin/python3.11 && export PYTHON_LIB_PATH=/usr/local/lib/python3.11/dist-packages
+  export PYTHON_BIN_PATH=/usr/bin/python3.12 && export PYTHON_LIB_PATH=/usr/local/lib/python3.12/dist-packages
   ABI=cp311
 
   # Configures Bazel environment for selected Python version.
@@ -103,3 +103,6 @@ for python_version in $PYTHON_VERSIONS; do
   rm -r $OUTPUT_DIR/fresh
 
 done
+
+cd /
+# python3.11 -m launchpad.examples.hello_world.launch
